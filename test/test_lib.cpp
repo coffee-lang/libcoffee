@@ -16,20 +16,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * ***************************
- * coffeetypes.cpp
+ * test_lib.cpp
  *
- *  Created on: Dec 20, 2019
+ *  Created on: Dec 13, 2019
  *      Author: vinceh121
  */
 
-#include "coffeetypes.hpp"
+#include "../coffee/coffeetypes.hpp"
+#include <iostream>
 
-#include <unordered_map>
-
-const std::unordered_map<CoffeeType, std::string> *typeNames = { {
-		CoffeeType.BYTE, "BYTE" }, { CoffeeType.CHAR, "CHAR" } };
-
-std::string get_type_name(CoffeeType type) {
-	return (typeNames[type]);
+int main(void) {
+	std::cout << "Byte: " << get_type_name(CoffeeType::Byte) << "\n";
 }
 

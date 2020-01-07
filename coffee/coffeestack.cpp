@@ -16,20 +16,27 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * ***************************
- * coffeetypes.cpp
+ * coffeestack.cpp
  *
- *  Created on: Dec 20, 2019
+ *  Created on: Jan 7, 2020
  *      Author: vinceh121
  */
 
-#include "coffeetypes.hpp"
+#include "coffeestack.hpp"
+#include <stack>
 
-#include <unordered_map>
+std::stack<CoffeePointer> stc;
 
-const std::unordered_map<CoffeeType, std::string> *typeNames = { {
-		CoffeeType.BYTE, "BYTE" }, { CoffeeType.CHAR, "CHAR" } };
+CoffeePointer* CoffeeStack::pop() {
+	return (stc.pop());
+}
 
-std::string get_type_name(CoffeeType type) {
-	return (typeNames[type]);
+void CoffeeStack::push(CoffeePointer *pointer) {
+	if (pointer->type == CoffeeType::Method
+			|| pointer->type == CoffeeType::Class) {
+		stc.push(*pointer);
+	} else {
+		throw std::invalid_argument("test");
+	}
 }
 

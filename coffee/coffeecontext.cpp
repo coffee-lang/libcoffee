@@ -1,5 +1,5 @@
 /*
- * CoffeePot, the official VM for the Coffee programming language.
+ * libcoffee, commons for the Coffee runtime components
  * Copyright (C) 2019 Coffee Developers
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,20 +16,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * ***************************
- * coffeetypes.cpp
+ * coffeecontext.cpp
  *
- *  Created on: Dec 20, 2019
+ *  Created on: Jan 7, 2020
  *      Author: vinceh121
  */
 
-#include "coffeetypes.hpp"
-
+#include "coffeecontext.hpp"
 #include <unordered_map>
 
-const std::unordered_map<CoffeeType, std::string> *typeNames = { {
-		CoffeeType.BYTE, "BYTE" }, { CoffeeType.CHAR, "CHAR" } };
 
-std::string get_type_name(CoffeeType type) {
-	return (typeNames[type]);
+
+std::unordered_map<CoffeePointer, CoffeeEntity> ctx;
+
+CoffeeEntity CoffeeContext::get(CoffeePointer *pointer) {
+	return (ctx[&pointer]);
 }
+
+void CoffeeContext::put(CoffeeEntity *entity) {
+	ctx[entity->pointer] = &entity;
+}
+
+
 
